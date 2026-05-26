@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi tiết dự án - Dihome | Sửa chữa, nâng cấp & xây dựng nhà phố</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1e293b',
+                        secondary: '#334155',
+                        accent: '#3b82f6',
+                        accentLight: '#60a5fa'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.9) 100%);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background: linear-gradient(90deg, #3b82f6, #60a5fa);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .blur-header {
+            backdrop-filter: blur(10px);
+            background-color: rgba(15, 23, 42, 0.95);
+        }
+        
+        .swiper {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .swiper-slide {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .swiper-button-prev,
+        .swiper-button-next {
+            color: white;
+            width: 50px;
+            height: 50px;
+            background: rgba(59, 130, 246, 0.9);
+            border-radius: 50%;
+            backdrop-filter: blur(10px);
+        }
+        
+        .swiper-button-prev:after,
+        .swiper-button-next:after {
+            font-size: 20px;
+        }
+        
+        .swiper-pagination-bullet {
+            width: 12px;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.5);
+            opacity: 1;
+        }
+        
+        .swiper-pagination-bullet-active {
+            background: #3b82f6;
+            width: 30px;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <!-- Header -->
+    <header id="header" class="fixed top-0 left-0 w-full z-50 transition-all duration-300">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <a href="index.html" class="text-2xl font-bold text-white">
+                    <img src="lg.png" alt="Dihome" class="max-w-[50px] h-auto">
+                </a>
+                
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="nav-link text-white hover:text-accentLight transition-colors">Trang chủ</a>
+                    <a href="gioi-thieu.html" class="nav-link text-white hover:text-accentLight transition-colors">Giới thiệu</a>
+                    <a href="dich-vu.html" class="nav-link text-white hover:text-accentLight transition-colors">Dịch vụ</a>
+                    <a href="du-an.html" class="nav-link text-white hover:text-accentLight transition-colors">Dự án</a>
+                    <a href="tin-tuc.html" class="nav-link text-white hover:text-accentLight transition-colors">Tin tức</a>
+                    <a href="lien-he.html" class="bg-accent hover:bg-blue-700 text-white px-6 py-2.5 rounded-full font-semibold transition-all hover:shadow-lg">
+                        Liên hệ ngay
+                    </a>
+                </nav>
+                
+                <button id="mobileMenuBtn" class="md:hidden text-white text-2xl">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+        
+        <div id="mobileMenu" class="hidden md:hidden bg-primary/95 backdrop-blur-md">
+            <div class="container mx-auto px-6 py-6">
+                <nav class="flex flex-col space-y-4">
+                    <a href="index.html" class="text-white hover:text-accentLight transition-colors py-2">Trang chủ</a>
+                    <a href="gioi-thieu.html" class="text-white hover:text-accentLight transition-colors py-2">Giới thiệu</a>
+                    <a href="dich-vu.html" class="text-white hover:text-accentLight transition-colors py-2">Dịch vụ</a>
+                    <a href="du-an.html" class="text-white hover:text-accentLight transition-colors py-2">Dự án</a>
+                    <a href="tin-tuc.html" class="text-white hover:text-accentLight transition-colors py-2">Tin tức</a>
+                    <a href="lien-he.html" class="bg-accent hover:bg-blue-700 text-white px-6 py-3 rounded-full font-semibold text-center transition-all">
+                        Liên hệ ngay
+                    </a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-[40vh] flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0">
+            <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1920&q=80" 
+                 alt="Nhà phố hiện đại 3 tầng" 
+                 class="w-full h-full object-cover">
+            <div class="absolute inset-0 hero-gradient"></div>
+        </div>
+        
+        <div class="relative z-20 container mx-auto px-6 text-center">
+            <div data-aos="fade-up" data-aos-duration="1000">
+                <span class="inline-block bg-accent/20 text-accentLight px-6 py-3 rounded-full text-sm font-semibold mb-6 tracking-wider">
+                    <i class="fas fa-building mr-2"></i>DỰ ÁN TIÊU BIỂU
+                </span>
+                <h1 class="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
+                    Nhà phố hiện đại 3 tầng
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+                    Dự án xây dựng nhà phố 3 tầng với thiết kế tối giản, hiện đại và đầy tiện nghi
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Breadcrumb -->
+    <section class="py-6 bg-white border-b border-gray-200">
+        <div class="container mx-auto px-6">
+            <nav class="flex items-center text-sm text-gray-500">
+                <a href="index.html" class="hover:text-accent transition-colors">Trang chủ</a>
+                <i class="fas fa-chevron-right mx-3 text-xs"></i>
+                <a href="du-an.html" class="hover:text-accent transition-colors">Dự án</a>
+                <i class="fas fa-chevron-right mx-3 text-xs"></i>
+                <span class="text-primary font-medium">Nhà phố hiện đại 3 tầng</span>
+            </nav>
+        </div>
+    </section>
+
+    <!-- Project Gallery -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-6" data-aos="fade-up" data-aos-duration="1000">
+            <div class="swiper projectSwiper rounded-3xl shadow-2xl overflow-hidden">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&q=80" 
+                             alt="Project 1" 
+                             class="w-full h-[500px] object-cover">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80" 
+                             alt="Project 2" 
+                             class="w-full h-[500px] object-cover">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1200&q=80" 
+                             alt="Project 3" 
+                             class="w-full h-[500px] object-cover">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=1200&q=80" 
+                             alt="Project 4" 
+                             class="w-full h-[500px] object-cover">
+                    </div>
+                </div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Details -->
+    <section class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="grid lg:grid-cols-3 gap-12">
+                <!-- Project Content -->
+                <div class="lg:col-span-2" data-aos="fade-up" data-aos-duration="1000">
+                    <h2 class="text-3xl md:text-4xl font-bold text-primary mb-8">
+                        Giới thiệu dự án
+                    </h2>
+                    
+                    <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+                        Dự án "Nhà phố hiện đại 3 tầng" được thực hiện tại Quận 1, TP. Hồ Chí Minh với quy mô diện tích 5x20m. Đây là dự án xây dựng hoàn chỉnh từ A-Z với thiết kế hiện đại, tối giản nhưng vẫn đầy tiện nghi và sang trọng.
+                    </p>
+                    
+                    <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+                        Với mong muốn tạo ra một không gian sống hiện đại, tiện nghi và phù hợp với phong cách sống của gia đình trẻ, đội ngũ kiến trúc sư của Dihome đã thiết kế một ngôi nhà với phong cách hiện đại tối giản, kết hợp hài hòa giữa không gian riêng tư và không gian chung.
+                    </p>
+
+                    <h3 class="text-2xl font-bold text-primary mb-6">
+                        Đặc điểm nổi bật
+                    </h3>
+                    
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-start gap-4 text-gray-600 text-lg">
+                            <i class="fas fa-check-circle text-accent mt-1 text-xl"></i>
+                            <span>Thiết kế hiện đại tối giản, tối ưu diện tích sử dụng</span>
+                        </li>
+                        <li class="flex items-start gap-4 text-gray-600 text-lg">
+                            <i class="fas fa-check-circle text-accent mt-1 text-xl"></i>
+                            <span>Sử dụng vật liệu chất lượng cao, đảm bảo bền vững theo thời gian</span>
+                        </li>
+                        <li class="flex items-start gap-4 text-gray-600 text-lg">
+                            <i class="fas fa-check-circle text-accent mt-1 text-xl"></i>
+                            <span>Hệ thống ánh sáng và thông gió được thiết kế tối ưu</span>
+                        </li>
+                        <li class="flex items-start gap-4 text-gray-600 text-lg">
+                            <i class="fas fa-check-circle text-accent mt-1 text-xl"></i>
+                            <span>Không gian sinh hoạt chung rộng rãi, kết nối các khu vực</span>
+                        </li>
+                        <li class="flex items-start gap-4 text-gray-600 text-lg">
+                            <i class="fas fa-check-circle text-accent mt-1 text-xl"></i>
+                            <span>Phòng ngủ riêng tư, đầy tiện nghi và yên tĩnh</span>
+                        </li>
+                    </ul>
+
+                    <h3 class="text-2xl font-bold text-primary mb-6">
+                        Quy mô và tiến độ
+                    </h3>
+                    
+                    <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+                        Dự án được thực hiện trong vòng 6 tháng, từ khảo sát, thiết kế đến thi công và bàn giao. Đội ngũ kỹ sư và thợ lành nghề của Dihome đã làm việc với tinh thần chuyên nghiệp, đảm bảo chất lượng và tiến độ cam kết.
+                    </p>
+                    
+                    <p class="text-lg text-gray-600 leading-relaxed">
+                        Cho đến nay, dự án đã được bàn giao và gia đình chủ đầu tư đang sinh hoạt rất hài lòng với chất lượng và thiết kế của ngôi nhà.
+                    </p>
+                </div>
+
+                <!-- Sidebar -->
+                <div class="lg:col-span-1" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="100">
+                    <!-- Project Info -->
+                    <div class="bg-white rounded-3xl shadow-xl p-8 mb-8">
+                        <h3 class="text-xl font-bold text-primary mb-6">
+                            <i class="fas fa-info-circle text-accent mr-2"></i>
+                            Thông tin dự án
+                        </h3>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-center gap-4 pb-4 border-b border-gray-200">
+                                <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-map-marker-alt text-accent text-xl"></i>
+                                </div>
+                                <div>
+                                    <div class="text-sm text-gray-500">Địa điểm</div>
+                                    <div class="font-semibold text-primary">Quận 1, TP. Hồ Chí Minh</div>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center gap-4 pb-4 border-b border-gray-200">
+                                <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-calendar-alt text-accent text-xl"></i>
+                                </div>
+                                <div>
+                                    <div class="text-sm text-gray-500">Hoàn thành</div>
+                                    <div class="font-semibold text-primary">Tháng 3, 2026</div>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center gap-4 pb-4 border-b border-gray-200">
+                                <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-user text-accent text-xl"></i>
+                                </div>
+                                <div>
+                                    <div class="text-sm text-gray-500">Chủ đầu tư</div>
+                                    <div class="font-semibold text-primary">Gia đình Nguyễn</div>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center gap-4 pb-4 border-b border-gray-200">
+                                <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-ruler-combined text-accent text-xl"></i>
+                                </div>
+                                <div>
+                                    <div class="text-sm text-gray-500">Diện tích</div>
+                                    <div class="font-semibold text-primary">5x20m (100m²)</div>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center gap-4 pb-4 border-b border-gray-200">
+                                <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-layer-group text-accent text-xl"></i>
+                                </div>
+                                <div>
+                                    <div class="text-sm text-gray-500">Số tầng</div>
+                                    <div class="font-semibold text-primary">3 tầng + 1 tum</div>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-tag text-accent text-xl"></i>
+                                </div>
+                                <div>
+                                    <div class="text-sm text-gray-500">Danh mục</div>
+                                    <div class="font-semibold text-primary">Xây dựng nhà phố</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact CTA -->
+                    <div class="bg-gradient-to-br from-accent to-blue-600 rounded-3xl shadow-xl p-8 text-white">
+                        <h3 class="text-xl font-bold mb-4">
+                            <i class="fas fa-phone mr-2"></i>
+                            Cần tư vấn dự án?
+                        </h3>
+                        <p class="text-blue-100 mb-6">
+                            Liên hệ với Dihome ngay hôm nay để được tư vấn miễn phí và nhận báo giá chi tiết.
+                        </p>
+                        <a href="lien-he.html" class="block w-full bg-white text-accent text-center py-4 rounded-xl font-bold hover:bg-gray-100 transition-colors">
+                            <i class="fas fa-arrow-right mr-2"></i>
+                            Liên hệ ngay
+                        </a>
+                    </div>
+
+                    <!-- Recent Projects -->
+                    <div class="bg-white rounded-3xl shadow-xl p-8 mt-8">
+                        <h3 class="text-xl font-bold text-primary mb-6">
+                            <i class="fas fa-project-diagram text-accent mr-2"></i>
+                            Dự án liên quan
+                        </h3>
+                        
+                        <div class="space-y-6">
+                            <a href="chi-tiet-du-an.html" class="flex gap-4 group">
+                                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=150&q=80" 
+                                     alt="Project 1" 
+                                     class="w-20 h-20 object-cover rounded-xl">
+                                <div>
+                                    <h4 class="font-semibold text-primary mb-1 group-hover:text-accent transition-colors text-sm leading-tight">
+                                        Cải tạo nhà cổ 2 tầng
+                                    </h4>
+                                    <span class="text-xs text-gray-500">Bình Thạnh, TP.HCM</span>
+                                </div>
+                            </a>
+                            <a href="chi-tiet-du-an.html" class="flex gap-4 group">
+                                <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=150&q=80" 
+                                     alt="Project 2" 
+                                     class="w-20 h-20 object-cover rounded-xl">
+                                <div>
+                                    <h4 class="font-semibold text-primary mb-1 group-hover:text-accent transition-colors text-sm leading-tight">
+                                        Thi công nội thất sang trọng
+                                    </h4>
+                                    <span class="text-xs text-gray-500">Tân Bình, TP.HCM</span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Related Projects -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16" data-aos="fade-up" data-aos-duration="1000">
+                <span class="inline-block bg-blue-100 text-accent px-6 py-3 rounded-full text-sm font-semibold mb-6">
+                    <i class="fas fa-th mr-2"></i>DỰ ÁN LIÊN QUAN
+                </span>
+                <h2 class="text-4xl md:text-5xl font-bold text-primary mb-6">
+                    Những dự án khác bạn có thể thích
+                </h2>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+                <div class="group bg-gray-50 rounded-3xl shadow-xl overflow-hidden card-hover" data-aos="fade-up" data-aos-duration="1000">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&q=80" 
+                             alt="Project 1" 
+                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/20 to-transparent"></div>
+                        <div class="absolute top-6 left-6">
+                            <span class="bg-blue-500 text-white px-5 py-2 rounded-full text-sm font-bold uppercase">
+                                Nâng cấp
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-xl font-bold text-primary mb-3 group-hover:text-accent transition-colors">
+                            Cải tạo nhà cổ 2 tầng
+                        </h3>
+                        <p class="text-gray-600 mb-4">
+                            <i class="fas fa-map-marker-alt mr-2"></i>
+                            Bình Thạnh, TP.HCM
+                        </p>
+                        <a href="chi-tiet-du-an.html" class="group inline-flex items-center gap-3 text-accent font-bold text-lg">
+                            Xem chi tiết
+                            <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="group bg-gray-50 rounded-3xl shadow-xl overflow-hidden card-hover" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600&q=80" 
+                             alt="Project 2" 
+                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/20 to-transparent"></div>
+                        <div class="absolute top-6 left-6">
+                            <span class="bg-purple-500 text-white px-5 py-2 rounded-full text-sm font-bold uppercase">
+                                Nội thất
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-xl font-bold text-primary mb-3 group-hover:text-accent transition-colors">
+                            Thi công nội thất sang trọng
+                        </h3>
+                        <p class="text-gray-600 mb-4">
+                            <i class="fas fa-map-marker-alt mr-2"></i>
+                            Tân Bình, TP.HCM
+                        </p>
+                        <a href="chi-tiet-du-an.html" class="group inline-flex items-center gap-3 text-accent font-bold text-lg">
+                            Xem chi tiết
+                            <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="group bg-gray-50 rounded-3xl shadow-xl overflow-hidden card-hover" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=600&q=80" 
+                             alt="Project 3" 
+                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/20 to-transparent"></div>
+                        <div class="absolute top-6 left-6">
+                            <span class="bg-accent text-white px-5 py-2 rounded-full text-sm font-bold uppercase">
+                                Xây dựng
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-xl font-bold text-primary mb-3 group-hover:text-accent transition-colors">
+                            Nhà phố hiện đại 4 tầng
+                        </h3>
+                        <p class="text-gray-600 mb-4">
+                            <i class="fas fa-map-marker-alt mr-2"></i>
+                            Phú Nhuận, TP.HCM
+                        </p>
+                        <a href="chi-tiet-du-an.html" class="group inline-flex items-center gap-3 text-accent font-bold text-lg">
+                            Xem chi tiết
+                            <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-gradient-to-br from-primary to-secondary">
+        <div class="container mx-auto px-6 text-center">
+            <div data-aos="fade-up" data-aos-duration="1000">
+                <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
+                    Sẵn sàng tạo dựng ngôi nhà mơ ước?
+                </h2>
+                <p class="text-xl text-gray-300 max-w-2xl mx-auto mb-10">
+                    Liên hệ với Dihome ngay hôm nay để được tư vấn miễn phí và nhận báo giá chi tiết
+                </p>
+                <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
+                    <a href="lien-he.html" class="group bg-accent hover:bg-blue-700 text-white px-10 py-5 rounded-full font-semibold text-xl transition-all hover:shadow-2xl flex items-center gap-3">
+                        Liên hệ ngay
+                        <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                    </a>
+                    <a href="tel:+84123456789" class="group border-2 border-white text-white hover:bg-white hover:text-primary px-10 py-5 rounded-full font-semibold flex items-center gap-3">
+                        <i class="fas fa-phone"></i>
+                        0123 456 789
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-primary text-white pt-20 pb-10">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                <div>
+                    <a href="index.html" class="text-3xl font-bold mb-6 inline-block">
+                        <img src="lg.png" alt="Dihome" class="max-w-[100px] h-auto mb-4">
+                    </a>
+                    <p class="text-gray-400 mb-6 leading-relaxed">
+                        Đơn vị chuyên nghiệp trong sửa chữa, nâng cấp và xây dựng nhà phố với hơn 15 năm kinh nghiệm và hàng ngàn khách hàng hài lòng.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="#" class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center hover:bg-accent transition-colors">
+                            <i class="fab fa-facebook-f text-xl"></i>
+                        </a>
+                        <a href="#" class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center hover:bg-accent transition-colors">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                        <a href="#" class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center hover:bg-accent transition-colors">
+                            <i class="fab fa-youtube text-xl"></i>
+                        </a>
+                        <a href="#" class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center hover:bg-accent transition-colors">
+                            <i class="fab fa-linkedin-in text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-xl font-bold mb-6">Điều hướng nhanh</h4>
+                    <ul class="space-y-4">
+                        <li><a href="index.html" class="text-gray-400 hover:text-accentLight transition-colors">Trang chủ</a></li>
+                        <li><a href="gioi-thieu.html" class="text-gray-400 hover:text-accentLight transition-colors">Giới thiệu</a></li>
+                        <li><a href="dich-vu.html" class="text-gray-400 hover:text-accentLight transition-colors">Dịch vụ</a></li>
+                        <li><a href="du-an.html" class="text-gray-400 hover:text-accentLight transition-colors">Dự án</a></li>
+                        <li><a href="tin-tuc.html" class="text-gray-400 hover:text-accentLight transition-colors">Tin tức</a></li>
+                        <li><a href="lien-he.html" class="text-gray-400 hover:text-accentLight transition-colors">Liên hệ</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-xl font-bold mb-6">Dịch vụ của chúng tôi</h4>
+                    <ul class="space-y-4">
+                        <li><a href="dich-vu.html" class="text-gray-400 hover:text-accentLight transition-colors">Xây dựng nhà phố</a></li>
+                        <li><a href="dich-vu.html" class="text-gray-400 hover:text-accentLight transition-colors">Sửa chữa nhà cửa</a></li>
+                        <li><a href="dich-vu.html" class="text-gray-400 hover:text-accentLight transition-colors">Nâng cấp nhà ở</a></li>
+                        <li><a href="dich-vu.html" class="text-gray-400 hover:text-accentLight transition-colors">Thi công nội thất</a></li>
+                        <li><a href="dich-vu.html" class="text-gray-400 hover:text-accentLight transition-colors">Xử lý thấm nước</a></li>
+                        <li><a href="dich-vu.html" class="text-gray-400 hover:text-accentLight transition-colors">Tư vấn thiết kế</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-xl font-bold mb-6">Thông tin liên hệ</h4>
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-4">
+                            <i class="fas fa-map-marker-alt text-accentLight mt-1"></i>
+                            <span class="text-gray-400">123 Đường ABC, Quận 1, TP. Hồ Chí Minh</span>
+                        </li>
+                        <li class="flex items-center gap-4">
+                            <i class="fas fa-phone text-accentLight"></i>
+                            <a href="tel:+84123456789" class="text-gray-400 hover:text-accentLight transition-colors">0123 456 789</a>
+                        </li>
+                        <li class="flex items-center gap-4">
+                            <i class="fas fa-envelope text-accentLight"></i>
+                            <a href="mailto:info@dihome.vn" class="text-gray-400 hover:text-accentLight transition-colors">info@dihome.vn</a>
+                        </li>
+                        <li class="flex items-center gap-4">
+                            <i class="fas fa-clock text-accentLight"></i>
+                            <span class="text-gray-400">Thứ 2 - Chủ nhật: 8:00 - 20:00</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                    <p class="text-gray-400 text-sm">
+                        © 2026 Dihome. All rights reserved.
+                    </p>
+                    <div class="flex gap-6">
+                        <a href="#" class="text-gray-400 hover:text-accentLight transition-colors text-sm">Điều khoản sử dụng</a>
+                        <a href="#" class="text-gray-400 hover:text-accentLight transition-colors text-sm">Chính sách bảo mật</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="fixed bottom-8 right-8 w-14 h-14 bg-accent text-white rounded-full shadow-xl hover:bg-blue-700 transition-all opacity-0 invisible z-50">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            once: true,
+            duration: 1000
+        });
+
+        const header = document.getElementById('header');
+        const backToTop = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                header.classList.add('blur-header');
+                backToTop.classList.remove('opacity-0', 'invisible');
+                backToTop.classList.add('opacity-100', 'visible');
+            } else {
+                header.classList.remove('blur-header');
+                backToTop.classList.add('opacity-0', 'invisible');
+                backToTop.classList.remove('opacity-100', 'visible');
+            }
+        });
+
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        const projectSwiper = new Swiper('.projectSwiper', {
+            slidesPerView: 1,
+            spaceBetween: 0,
+            loop: true,
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+        });
+    </script>
+</body>
+</html>

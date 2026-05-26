@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tin tức - Dihome | Sửa chữa, nâng cấp & xây dựng nhà phố</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1e293b',
+                        secondary: '#334155',
+                        accent: '#3b82f6',
+                        accentLight: '#60a5fa'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.9) 100%);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background: linear-gradient(90deg, #3b82f6, #60a5fa);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .blur-header {
+            backdrop-filter: blur(10px);
+            background-color: rgba(15, 23, 42, 0.95);
+        }
+        
+        .tag {
+            transition: all 0.3s ease;
+        }
+        
+        .tag:hover {
+            background: linear-gradient(90deg, #3b82f6, #60a5fa);
+            color: white;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <!-- Header -->
+    <header id="header" class="fixed top-0 left-0 w-full z-50 transition-all duration-300">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <a href="index.html" class="text-2xl font-bold text-white">
+                    <img src="lg.png" alt="Dihome" class="max-w-[50px] h-auto">
+                </a>
+                
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="nav-link text-white hover:text-accentLight transition-colors">Trang chủ</a>
+                    <a href="gioi-thieu.html" class="nav-link text-white hover:text-accentLight transition-colors">Giới thiệu</a>
+                    <a href="dich-vu.html" class="nav-link text-white hover:text-accentLight transition-colors">Dịch vụ</a>
+                    <a href="du-an.html" class="nav-link text-white hover:text-accentLight transition-colors">Dự án</a>
+                    <a href="tin-tuc.html" class="nav-link text-white hover:text-accentLight transition-colors">Tin tức</a>
+                    <a href="lien-he.html" class="bg-accent hover:bg-blue-700 text-white px-6 py-2.5 rounded-full font-semibold transition-all hover:shadow-lg">
+                        Liên hệ ngay
+                    </a>
+                </nav>
+                
+                <button id="mobileMenuBtn" class="md:hidden text-white text-2xl">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+        
+        <div id="mobileMenu" class="hidden md:hidden bg-primary/95 backdrop-blur-md">
+            <div class="container mx-auto px-6 py-6">
+                <nav class="flex flex-col space-y-4">
+                    <a href="index.html" class="text-white hover:text-accentLight transition-colors py-2">Trang chủ</a>
+                    <a href="gioi-thieu.html" class="text-white hover:text-accentLight transition-colors py-2">Giới thiệu</a>
+                    <a href="dich-vu.html" class="text-white hover:text-accentLight transition-colors py-2">Dịch vụ</a>
+                    <a href="du-an.html" class="text-white hover:text-accentLight transition-colors py-2">Dự án</a>
+                    <a href="tin-tuc.html" class="text-white hover:text-accentLight transition-colors py-2">Tin tức</a>
+                    <a href="lien-he.html" class="bg-accent hover:bg-blue-700 text-white px-6 py-3 rounded-full font-semibold text-center transition-all">
+                        Liên hệ ngay
+                    </a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-[50vh] flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0">
+            <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=1920&q=80" 
+                 alt="Tin tức Dihome" 
+                 class="w-full h-full object-cover">
+            <div class="absolute inset-0 hero-gradient"></div>
+        </div>
+        
+        <div class="relative z-20 container mx-auto px-6 text-center">
+            <div data-aos="fade-up" data-aos-duration="1000">
+                <span class="inline-block bg-accent/20 text-accentLight px-6 py-3 rounded-full text-sm font-semibold mb-6 tracking-wider">
+                    <i class="fas fa-newspaper mr-2"></i>TIN TỨC & KIẾN THỨC
+                </span>
+                <h1 class="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
+                    Tin tức <span class="text-accentLight">Dihome</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+                    Cập nhật những tin tức mới nhất, mẹo vặt và kiến thức hữu ích về sửa chữa, nâng cấp và xây dựng nhà phố
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Breadcrumb -->
+    <section class="py-6 bg-white border-b border-gray-200">
+        <div class="container mx-auto px-6">
+            <nav class="flex items-center text-sm text-gray-500">
+                <a href="index.html" class="hover:text-accent transition-colors">Trang chủ</a>
+                <i class="fas fa-chevron-right mx-3 text-xs"></i>
+                <span class="text-primary font-medium">Tin tức</span>
+            </nav>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="grid lg:grid-cols-3 gap-12">
+                <!-- News List -->
+                <div class="lg:col-span-2">
+                    <!-- Featured Post -->
+                    <div class="mb-16" data-aos="fade-up" data-aos-duration="1000">
+                        <div class="group bg-white rounded-3xl shadow-xl overflow-hidden card-hover">
+                            <div class="relative h-96 overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80" 
+                                     alt="Featured News" 
+                                     class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                                <div class="absolute top-6 left-6">
+                                    <span class="bg-accent text-white px-5 py-2 rounded-full text-sm font-bold uppercase tracking-wider">
+                                        Nổi bật
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="p-10">
+                                <div class="flex items-center gap-6 mb-6 text-sm text-gray-500">
+                                    <span><i class="fas fa-calendar-alt mr-2"></i>25/05/2026</span>
+                                    <span><i class="fas fa-user mr-2"></i>Admin</span>
+                                    <span><i class="fas fa-folder mr-2"></i>Xây dựng</span>
+                                    <span><i class="fas fa-eye mr-2"></i>1.2k lượt xem</span>
+                                </div>
+                                <h2 class="text-3xl font-bold text-primary mb-6 group-hover:text-accent transition-colors">
+                                    10 Mẹo chọn vật liệu xây dựng chất lượng cho nhà phố hiện đại
+                                </h2>
+                                <p class="text-gray-600 text-lg mb-8 leading-relaxed">
+                                    Vật liệu là yếu tố quan trọng nhất quyết định chất lượng và tuổi thọ của công trình. Bài viết này sẽ giúp bạn chọn được vật liệu xây dựng chất lượng, phù hợp với ngân sách và nhu cầu sử dụng...
+                                </p>
+                                <a href="chi-tiet-tin-tuc.html" class="group inline-flex items-center gap-3 text-accent font-bold text-lg">
+                                    Đọc thêm
+                                    <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- News Grid -->
+                    <div class="grid md:grid-cols-2 gap-8 mb-12">
+                        <div class="group bg-white rounded-3xl shadow-xl overflow-hidden card-hover" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
+                            <div class="relative h-56 overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600&q=80" 
+                                     alt="News 1" 
+                                     class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                                <div class="absolute top-4 left-4">
+                                    <span class="bg-blue-500 text-white px-4 py-1 rounded-full text-xs font-bold uppercase">
+                                        Sửa chữa
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="p-6">
+                                <div class="flex items-center gap-4 mb-4 text-xs text-gray-500">
+                                    <span><i class="fas fa-calendar-alt mr-1"></i>24/05/2026</span>
+                                    <span><i class="fas fa-user mr-1"></i>Admin</span>
+                                </div>
+                                <h3 class="text-xl font-bold text-primary mb-3 group-hover:text-accent transition-colors">
+                                    Cách xử lý thấm nước hiệu quả cho nhà cũ
+                                </h3>
+                                <p class="text-gray-600 text-sm mb-4 leading-relaxed">
+                                    Thấm nước là vấn đề phổ biến ở các nhà cũ, ảnh hưởng đến chất lượng cuộc sống...
+                                </p>
+                                <a href="chi-tiet-tin-tuc.html" class="group inline-flex items-center gap-2 text-accent font-semibold text-sm">
+                                    Đọc thêm
+                                    <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="group bg-white rounded-3xl shadow-xl overflow-hidden card-hover" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+                            <div class="relative h-56 overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600&q=80" 
+                                     alt="News 2" 
+                                     class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                                <div class="absolute top-4 left-4">
+                                    <span class="bg-green-500 text-white px-4 py-1 rounded-full text-xs font-bold uppercase">
+                                        Nâng cấp
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="p-6">
+                                <div class="flex items-center gap-4 mb-4 text-xs text-gray-500">
+                                    <span><i class="fas fa-calendar-alt mr-1"></i>23/05/2026</span>
+                                    <span><i class="fas fa-user mr-1"></i>Admin</span>
+                                </div>
+                                <h3 class="text-xl font-bold text-primary mb-3 group-hover:text-accent transition-colors">
+                                    Ý tưởng thiết kế nội thất hiện đại cho không gian nhỏ
+                                </h3>
+                                <p class="text-gray-600 text-sm mb-4 leading-relaxed">
+                                    Không gian nhỏ không phải là rào cản để có một ngôi nhà đẹp và tiện nghi...
+                                </p>
+                                <a href="chi-tiet-tin-tuc.html" class="group inline-flex items-center gap-2 text-accent font-semibold text-sm">
+                                    Đọc thêm
+                                    <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="group bg-white rounded-3xl shadow-xl overflow-hidden card-hover" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300">
+                            <div class="relative h-56 overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=600&q=80" 
+                                     alt="News 3" 
+                                     class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                                <div class="absolute top-4 left-4">
+                                    <span class="bg-purple-500 text-white px-4 py-1 rounded-full text-xs font-bold uppercase">
+                                        Nội thất
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="p-6">
+                                <div class="flex items-center gap-4 mb-4 text-xs text-gray-500">
+                                    <span><i class="fas fa-calendar-alt mr-1"></i>22/05/2026</span>
+                                    <span><i class="fas fa-user mr-1"></i>Admin</span>
+                                </div>
+                                <h3 class="text-xl font-bold text-primary mb-3 group-hover:text-accent transition-colors">
+                                    Bí quyết chọn màu sơn phù hợp cho từng phòng
+                                </h3>
+                                <p class="text-gray-600 text-sm mb-4 leading-relaxed">
+                                    Màu sắc ảnh hưởng lớn đến tâm trạng và cảm xúc của người sống trong không gian...
+                                </p>
+                                <a href="chi-tiet-tin-tuc.html" class="group inline-flex items-center gap-2 text-accent font-semibold text-sm">
+                                    Đọc thêm
+                                    <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="group bg-white rounded-3xl shadow-xl overflow-hidden card-hover" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
+                            <div class="relative h-56 overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=600&q=80" 
+                                     alt="News 4" 
+                                     class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                                <div class="absolute top-4 left-4">
+                                    <span class="bg-red-500 text-white px-4 py-1 rounded-full text-xs font-bold uppercase">
+                                        Chống thấm
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="p-6">
+                                <div class="flex items-center gap-4 mb-4 text-xs text-gray-500">
+                                    <span><i class="fas fa-calendar-alt mr-1"></i>21/05/2026</span>
+                                    <span><i class="fas fa-user mr-1"></i>Admin</span>
+                                </div>
+                                <h3 class="text-xl font-bold text-primary mb-3 group-hover:text-accent transition-colors">
+                                    Quy trình bảo trì nhà cửa hàng năm bạn nên biết
+                                </h3>
+                                <p class="text-gray-600 text-sm mb-4 leading-relaxed">
+                                    Bảo trì định kỳ giúp kéo dài tuổi thọ của ngôi nhà và tiết kiệm chi phí sửa chữa...
+                                </p>
+                                <a href="chi-tiet-tin-tuc.html" class="group inline-flex items-center gap-2 text-accent font-semibold text-sm">
+                                    Đọc thêm
+                                    <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="group bg-white rounded-3xl shadow-xl overflow-hidden card-hover" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500">
+                            <div class="relative h-56 overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&q=80" 
+                                     alt="News 5" 
+                                     class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                                <div class="absolute top-4 left-4">
+                                    <span class="bg-cyan-500 text-white px-4 py-1 rounded-full text-xs font-bold uppercase">
+                                        Tư vấn
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="p-6">
+                                <div class="flex items-center gap-4 mb-4 text-xs text-gray-500">
+                                    <span><i class="fas fa-calendar-alt mr-1"></i>20/05/2026</span>
+                                    <span><i class="fas fa-user mr-1"></i>Admin</span>
+                                </div>
+                                <h3 class="text-xl font-bold text-primary mb-3 group-hover:text-accent transition-colors">
+                                    Lựa chọn đơn vị thi công uy tín: Những điều cần lưu ý
+                                </h3>
+                                <p class="text-gray-600 text-sm mb-4 leading-relaxed">
+                                    Đơn vị thi công là yếu tố quan trọng quyết định thành công của dự án của bạn...
+                                </p>
+                                <a href="chi-tiet-tin-tuc.html" class="group inline-flex items-center gap-2 text-accent font-semibold text-sm">
+                                    Đọc thêm
+                                    <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="group bg-white rounded-3xl shadow-xl overflow-hidden card-hover" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="600">
+                            <div class="relative h-56 overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600&q=80" 
+                                     alt="News 6" 
+                                     class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                                <div class="absolute top-4 left-4">
+                                    <span class="bg-accent text-white px-4 py-1 rounded-full text-xs font-bold uppercase">
+                                        Xây dựng
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="p-6">
+                                <div class="flex items-center gap-4 mb-4 text-xs text-gray-500">
+                                    <span><i class="fas fa-calendar-alt mr-1"></i>19/05/2026</span>
+                                    <span><i class="fas fa-user mr-1"></i>Admin</span>
+                                </div>
+                                <h3 class="text-xl font-bold text-primary mb-3 group-hover:text-accent transition-colors">
+                                    Xu hướng thiết kế nhà phố 2026: Hiện đại và tiết kiệm
+                                </h3>
+                                <p class="text-gray-600 text-sm mb-4 leading-relaxed">
+                                    Cập nhật những xu hướng thiết kế mới nhất cho nhà phố năm 2026...
+                                </p>
+                                <a href="chi-tiet-tin-tuc.html" class="group inline-flex items-center gap-2 text-accent font-semibold text-sm">
+                                    Đọc thêm
+                                    <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pagination -->
+                    <div class="flex justify-center items-center gap-3" data-aos="fade-up" data-aos-duration="1000">
+                        <button class="w-12 h-12 bg-white border border-gray-200 rounded-xl flex items-center justify-center text-gray-500 hover:bg-accent hover:text-white hover:border-accent transition-all">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="w-12 h-12 bg-accent text-white rounded-xl flex items-center justify-center font-semibold">
+                            1
+                        </button>
+                        <button class="w-12 h-12 bg-white border border-gray-200 rounded-xl flex items-center justify-center text-gray-700 hover:bg-accent hover:text-white hover:border-accent transition-all">
+                            2
+                        </button>
+                        <button class="w-12 h-12 bg-white border border-gray-200 rounded-xl flex items-center justify-center text-gray-700 hover:bg-accent hover:text-white hover:border-accent transition-all">
+                            3
+                        </button>
+                        <span class="text-gray-500">...</span>
+                        <button class="w-12 h-12 bg-white border border-gray-200 rounded-xl flex items-center justify-center text-gray-700 hover:bg-accent hover:text-white hover:border-accent transition-all">
+                            10
+                        </button>
+                        <button class="w-12 h-12 bg-white border border-gray-200 rounded-xl flex items-center justify-center text-gray-500 hover:bg-accent hover:text-white hover:border-accent transition-all">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Sidebar -->
+                <div class="lg:col-span-1">
+                    <!-- Search Widget -->
+                    <div class="bg-white rounded-3xl shadow-xl p-8 mb-8" data-aos="fade-left" data-aos-duration="1000">
+                        <h3 class="text-xl font-bold text-primary mb-6">Tìm kiếm</h3>
+                        <div class="relative">
+                            <input type="text" placeholder="Tìm kiếm bài viết..." class="w-full px-6 py-4 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/20 transition-all">
+                            <button class="absolute right-4 top-1/2 transform -translate-y-1/2 text-accent hover:text-blue-700 transition-colors">
+                                <i class="fas fa-search text-xl"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Categories Widget -->
+                    <div class="bg-white rounded-3xl shadow-xl p-8 mb-8" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="100">
+                        <h3 class="text-xl font-bold text-primary mb-6">Danh mục</h3>
+                        <ul class="space-y-4">
+                            <li>
+                                <a href="#" class="flex items-center justify-between text-gray-600 hover:text-accent transition-colors group">
+                                    <span class="flex items-center gap-3">
+                                        <i class="fas fa-building text-accent"></i>
+                                        Xây dựng
+                                    </span>
+                                    <span class="bg-gray-100 text-gray-500 px-3 py-1 rounded-full text-sm group-hover:bg-accent group-hover:text-white transition-all">24</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="flex items-center justify-between text-gray-600 hover:text-accent transition-colors group">
+                                    <span class="flex items-center gap-3">
+                                        <i class="fas fa-tools text-accent"></i>
+                                        Sửa chữa
+                                    </span>
+                                    <span class="bg-gray-100 text-gray-500 px-3 py-1 rounded-full text-sm group-hover:bg-accent group-hover:text-white transition-all">18</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="flex items-center justify-between text-gray-600 hover:text-accent transition-colors group">
+                                    <span class="flex items-center gap-3">
+                                        <i class="fas fa-sync-alt text-accent"></i>
+                                        Nâng cấp
+                                    </span>
+                                    <span class="bg-gray-100 text-gray-500 px-3 py-1 rounded-full text-sm group-hover:bg-accent group-hover:text-white transition-all">15</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="flex items-center justify-between text-gray-600 hover:text-accent transition-colors group">
+                                    <span class="flex items-center gap-3">
+                                        <i class="fas fa-paint-roller text-accent"></i>
+                                        Nội thất
+                                    </span>
+                                    <span class="bg-gray-100 text-gray-500 px-3 py-1 rounded-full text-sm group-hover:bg-accent group-hover:text-white transition-all">21</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="flex items-center justify-between text-gray-600 hover:text-accent transition-colors group">
+                                    <span class="flex items-center gap-3">
+                                        <i class="fas fa-tint text-accent"></i>
+                                        Chống thấm
+                                    </span>
+                                    <span class="bg-gray-100 text-gray-500 px-3 py-1 rounded-full text-sm group-hover:bg-accent group-hover:text-white transition-all">12</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="flex items-center justify-between text-gray-600 hover:text-accent transition-colors group">
+                                    <span class="flex items-center gap-3">
+                                        <i class="fas fa-drafting-compass text-accent"></i>
+                                        Tư vấn
+                                    </span>
+                                    <span class="bg-gray-100 text-gray-500 px-3 py-1 rounded-full text-sm group-hover:bg-accent group-hover:text-white transition-all">9</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Recent Posts Widget -->
+                    <div class="bg-white rounded-3xl shadow-xl p-8 mb-8" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
+                        <h3 class="text-xl font-bold text-primary mb-6">Bài viết mới</h3>
+                        <div class="space-y-6">
+                            <a href="#" class="flex gap-4 group">
+                                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=150&q=80" 
+                                     alt="Recent 1" 
+                                     class="w-20 h-20 object-cover rounded-xl">
+                                <div>
+                                    <h4 class="font-semibold text-primary mb-1 group-hover:text-accent transition-colors text-sm leading-tight">
+                                        10 Mẹo chọn vật liệu xây dựng chất lượng
+                                    </h4>
+                                    <span class="text-xs text-gray-500"><i class="fas fa-calendar-alt mr-1"></i>25/05/2026</span>
+                                </div>
+                            </a>
+                            <a href="#" class="flex gap-4 group">
+                                <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=150&q=80" 
+                                     alt="Recent 2" 
+                                     class="w-20 h-20 object-cover rounded-xl">
+                                <div>
+                                    <h4 class="font-semibold text-primary mb-1 group-hover:text-accent transition-colors text-sm leading-tight">
+                                        Cách xử lý thấm nước hiệu quả cho nhà cũ
+                                    </h4>
+                                    <span class="text-xs text-gray-500"><i class="fas fa-calendar-alt mr-1"></i>24/05/2026</span>
+                                </div>
+                            </a>
+                            <a href="#" class="flex gap-4 group">
+                                <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=150&q=80" 
+                                     alt="Recent 3" 
+                                     class="w-20 h-20 object-cover rounded-xl">
+                                <div>
+                                    <h4 class="font-semibold text-primary mb-1 group-hover:text-accent transition-colors text-sm leading-tight">
+                                        Ý tưởng thiết kế nội thất hiện đại
+                                    </h4>
+                                    <span class="text-xs text-gray-500"><i class="fas fa-calendar-alt mr-1"></i>23/05/2026</span>
+                                </div>
+                            </a>
+                            <a href="#" class="flex gap-4 group">
+                                <img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=150&q=80" 
+                                     alt="Recent 4" 
+                                     class="w-20 h-20 object-cover rounded-xl">
+                                <div>
+                                    <h4 class="font-semibold text-primary mb-1 group-hover:text-accent transition-colors text-sm leading-tight">
+                                        Bí quyết chọn màu sơn phù hợp
+                                    </h4>
+                                    <span class="text-xs text-gray-500"><i class="fas fa-calendar-alt mr-1"></i>22/05/2026</span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Tags Widget -->
+                    <div class="bg-white rounded-3xl shadow-xl p-8" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="300">
+                        <h3 class="text-xl font-bold text-primary mb-6">Tags</h3>
+                        <div class="flex flex-wrap gap-3">
+                            <a href="#" class="tag px-4 py-2 bg-gray-100 text-gray-600 rounded-full text-sm font-medium">Nhà phố</a>
+                            <a href="#" class="tag px-4 py-2 bg-gray-100 text-gray-600 rounded-full text-sm font-medium">Xây dựng</a>
+                            <a href="#" class="tag px-4 py-2 bg-gray-100 text-gray-600 rounded-full text-sm font-medium">Sửa chữa</a>
+                            <a href="#" class="tag px-4 py-2 bg-gray-100 text-gray-600 rounded-full text-sm font-medium">Nội thất</a>
+                            <a href="#" class="tag px-4 py-2 bg-gray-100 text-gray-600 rounded-full text-sm font-medium">Thiết kế</a>
+                            <a href="#" class="tag px-4 py-2 bg-gray-100 text-gray-600 rounded-full text-sm font-medium">Vật liệu</a>
+                            <a href="#" class="tag px-4 py-2 bg-gray-100 text-gray-600 rounded-full text-sm font-medium">Chống thấm</a>
+                            <a href="#" class="tag px-4 py-2 bg-gray-100 text-gray-600 rounded-full text-sm font-medium">Mẹo vặt</a>
+                            <a href="#" class="tag px-4 py-2 bg-gray-100 text-gray-600 rounded-full text-sm font-medium">Bảo trì</a>
+                            <a href="#" class="tag px-4 py-2 bg-gray-100 text-gray-600 rounded-full text-sm font-medium">Xu hướng</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-primary text-white pt-20 pb-10">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                <div>
+                    <a href="index.html" class="text-3xl font-bold mb-6 inline-block">
+                        <img src="lg.png" alt="Dihome" class="max-w-[100px] h-auto mb-4">
+                    </a>
+                    <p class="text-gray-400 mb-6 leading-relaxed">
+                        Đơn vị chuyên nghiệp trong sửa chữa, nâng cấp và xây dựng nhà phố với hơn 15 năm kinh nghiệm và hàng ngàn khách hàng hài lòng.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="#" class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center hover:bg-accent transition-colors">
+                            <i class="fab fa-facebook-f text-xl"></i>
+                        </a>
+                        <a href="#" class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center hover:bg-accent transition-colors">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                        <a href="#" class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center hover:bg-accent transition-colors">
+                            <i class="fab fa-youtube text-xl"></i>
+                        </a>
+                        <a href="#" class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center hover:bg-accent transition-colors">
+                            <i class="fab fa-linkedin-in text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-xl font-bold mb-6">Điều hướng nhanh</h4>
+                    <ul class="space-y-4">
+                        <li><a href="index.html" class="text-gray-400 hover:text-accentLight transition-colors">Trang chủ</a></li>
+                        <li><a href="gioi-thieu.html" class="text-gray-400 hover:text-accentLight transition-colors">Giới thiệu</a></li>
+                        <li><a href="dich-vu.html" class="text-gray-400 hover:text-accentLight transition-colors">Dịch vụ</a></li>
+                        <li><a href="du-an.html" class="text-gray-400 hover:text-accentLight transition-colors">Dự án</a></li>
+                        <li><a href="tin-tuc.html" class="text-gray-400 hover:text-accentLight transition-colors">Tin tức</a></li>
+                        <li><a href="lien-he.html" class="text-gray-400 hover:text-accentLight transition-colors">Liên hệ</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-xl font-bold mb-6">Dịch vụ của chúng tôi</h4>
+                    <ul class="space-y-4">
+                        <li><a href="dich-vu.html" class="text-gray-400 hover:text-accentLight transition-colors">Xây dựng nhà phố</a></li>
+                        <li><a href="dich-vu.html" class="text-gray-400 hover:text-accentLight transition-colors">Sửa chữa nhà cửa</a></li>
+                        <li><a href="dich-vu.html" class="text-gray-400 hover:text-accentLight transition-colors">Nâng cấp nhà ở</a></li>
+                        <li><a href="dich-vu.html" class="text-gray-400 hover:text-accentLight transition-colors">Thi công nội thất</a></li>
+                        <li><a href="dich-vu.html" class="text-gray-400 hover:text-accentLight transition-colors">Xử lý thấm nước</a></li>
+                        <li><a href="dich-vu.html" class="text-gray-400 hover:text-accentLight transition-colors">Tư vấn thiết kế</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-xl font-bold mb-6">Thông tin liên hệ</h4>
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-4">
+                            <i class="fas fa-map-marker-alt text-accentLight mt-1"></i>
+                            <span class="text-gray-400">123 Đường ABC, Quận 1, TP. Hồ Chí Minh</span>
+                        </li>
+                        <li class="flex items-center gap-4">
+                            <i class="fas fa-phone text-accentLight"></i>
+                            <a href="tel:+84123456789" class="text-gray-400 hover:text-accentLight transition-colors">0123 456 789</a>
+                        </li>
+                        <li class="flex items-center gap-4">
+                            <i class="fas fa-envelope text-accentLight"></i>
+                            <a href="mailto:info@dihome.vn" class="text-gray-400 hover:text-accentLight transition-colors">info@dihome.vn</a>
+                        </li>
+                        <li class="flex items-center gap-4">
+                            <i class="fas fa-clock text-accentLight"></i>
+                            <span class="text-gray-400">Thứ 2 - Chủ nhật: 8:00 - 20:00</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                    <p class="text-gray-400 text-sm">
+                        © 2026 Dihome. All rights reserved.
+                    </p>
+                    <div class="flex gap-6">
+                        <a href="#" class="text-gray-400 hover:text-accentLight transition-colors text-sm">Điều khoản sử dụng</a>
+                        <a href="#" class="text-gray-400 hover:text-accentLight transition-colors text-sm">Chính sách bảo mật</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="fixed bottom-8 right-8 w-14 h-14 bg-accent text-white rounded-full shadow-xl hover:bg-blue-700 transition-all opacity-0 invisible z-50">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            once: true,
+            duration: 1000
+        });
+
+        const header = document.getElementById('header');
+        const backToTop = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                header.classList.add('blur-header');
+                backToTop.classList.remove('opacity-0', 'invisible');
+                backToTop.classList.add('opacity-100', 'visible');
+            } else {
+                header.classList.remove('blur-header');
+                backToTop.classList.add('opacity-0', 'invisible');
+                backToTop.classList.remove('opacity-100', 'visible');
+            }
+        });
+
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>
